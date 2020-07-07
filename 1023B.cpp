@@ -17,16 +17,21 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    ll n,k;
+    cin>>n>>k;
+    if((n+n-1)<k)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	cout<<"0";
+    	return 0;
+    }
+    if(n>=k)
+    {
+    	n=k-1;
+    }
+    if(n<k)
+    {
+    	cout<<n-(k/2);
+    	return 0;
     }
 
 

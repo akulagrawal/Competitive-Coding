@@ -17,18 +17,25 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
+    int t,n;
+    string s;
     cin>>t;
     while(t--)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
+    	cin>>n>>s;
+    	int i;
+    	for(i=0;i<n/2;i++)
+    	{
+    		if(abs(s[n-i-1]-s[i])==2||abs(s[n-i-1]-s[i])==0)
+    			continue;
+    		else
+    			break;
+    	}
+    	if(i==n/2)
+    		cout<<"YES\n";
     	else
-    		cout<<"yes\n";
+    		cout<<"NO\n";
     }
-
 
     return 0;
 }

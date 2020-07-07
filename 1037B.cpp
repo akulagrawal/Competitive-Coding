@@ -10,6 +10,8 @@ using namespace std;
 #define INF 1e18
 #define pii pair<int,int>
 
+ll a[MAX];
+
 int main()
 {
     //freopen ("input1.in","r",stdin);
@@ -17,17 +19,34 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n;
+    ll s;
+    cin>>n>>s;
+    int i;
+    for(i=0;i<n;i++)
+    	cin>>a[i];
+    
+    sort(a,a+n);
+    ll ans=0;
+    int x=n/2;
+    if(a[x]<s)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	for(i=x;i<n;i++)
+    	{
+    		if(a[i]<s)
+    			ans+=s-a[i];
+    	}
     }
+    else
+    {
+    	for(i=x;i>=0;i--)
+    	{
+    		if(a[i]>s)
+    			ans+=a[i]-s;
+    	}
+    }
+    cout<<ans;
+
 
 
     return 0;

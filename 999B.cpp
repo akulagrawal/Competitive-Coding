@@ -16,19 +16,22 @@ int main()
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+
+    int n;
+    string s;
+    cin>>n>>s;
+    for(int i=0;i<n;i++)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	if(n%(i+1)==0)
+    	{
+    		for(int j=0;j<=i/2;j++)
+    		{
+    			char temp=s[j];
+    			s[j]=s[i-j];
+    			s[i-j]=temp;
+    		}
+    	}
     }
-
-
+    cout<<s;
     return 0;
 }

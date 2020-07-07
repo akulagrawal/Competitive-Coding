@@ -16,18 +16,27 @@ int main()
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n,l,r;
+
+    cin>>n>>l>>r;
+    int minsum=0;
+    int maxsum=0;
+    int prod = 1;
+    for(int i=0;i<l;i++)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	minsum+=prod;
+    	maxsum+=prod;
+    	prod*=2;
     }
+    for(int i=l;i<r;i++)
+    {
+    	maxsum+=prod;
+    	prod*=2;
+    }
+    prod/=2;
+    minsum += (n-l);
+    maxsum += (n-r)*prod;
+    cout<<minsum<<" "<<maxsum;
 
 
     return 0;

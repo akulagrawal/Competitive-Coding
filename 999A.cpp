@@ -10,25 +10,33 @@ using namespace std;
 #define INF 1e18
 #define pii pair<int,int>
 
+int a[MAX];
+
 int main()
 {
     //freopen ("input1.in","r",stdin);
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
-    {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
-    }
 
+    int n,k;
+    int i;
+    cin>>n>>k;
+    for(i=0;i<n;i++)
+    	cin>>a[i];
+    for(i=0;i<n;i++)
+    	if(a[i]>k)
+    		break;
+    int j;
+    for(j=n-1;j>=0;j--)
+    	if(a[j]>k)
+    		break;
+    if(i==n)
+    	cout<<n;
+    else if(i!=j)
+    	cout<<n-(j-i+1);
+    else
+    	cout<<n-1;
 
     return 0;
 }

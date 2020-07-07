@@ -17,17 +17,20 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    ll n;
+    cin>>n;
+    ll ans=(((n+3)*(n+2)*(n+1))/6);
+    if(n>=6)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	ll x=((n-3)*(n-4)*(n-5))/3;
+    	ans-=x;
     }
+    if(n>=12)
+    {
+    	ll x=((n-9)*(n-10)*(n-11))/6;
+    	ans+=x;
+    }
+    cout<<ans;
 
 
     return 0;

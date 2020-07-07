@@ -18,15 +18,29 @@ int main()
     cin.tie(NULL);
     
     int t;
-    ll c,d,l;
     cin>>t;
     while(t--)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
+    	ll a,b;
+    	cin>>a>>b;
+    	if(a-b!=1)
+    		cout<<"NO";
     	else
-    		cout<<"yes\n";
+    	{
+    		ll c=a+b;
+    		ll i;
+    		for(i=2;i<=sqrt(c);i++)
+    		{
+    			if(c%i==0)
+    			{
+    				cout<<"NO";
+    				break;
+    			}
+    		}
+    		if(i>sqrt(c))
+    			cout<<"YES";
+    	}
+    	cout<<endl;
     }
 
 

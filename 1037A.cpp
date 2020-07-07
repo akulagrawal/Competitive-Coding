@@ -17,17 +17,12 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
-    {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
-    }
+    ll n;
+    cin>>n;
+    ll x=(log(n)/log(2));
+    while(pow(2,x)<=n)
+    	x++;
+    cout<<x;
 
 
     return 0;

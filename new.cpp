@@ -10,24 +10,40 @@ using namespace std;
 #define INF 1e18
 #define pii pair<int,int>
 
+class Test
+{
+	static int x;
+public:
+	Test() {x++; }
+	static int getX() {return x;}
+	Test(const Test& t1){
+		x++;
+		*this = t1;
+	}
+};
+
+int Test::x = 0;
+
+void f(Test&& t){
+	return;
+}
+
 int main()
 {
     //freopen ("input1.in","r",stdin);
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
-    {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
-    }
+    cout<<Test::getX()<<" ";
+    Test t[5];
+    cout<<Test::getX()<<" ";
+    Test t1;
+    f(move(t1));
+    cout<<Test::getX()<<" ";
+
+    char input[5];
+    cin.getline(input,sizeof(input));
+    cout<<input<<endl;
 
 
     return 0;

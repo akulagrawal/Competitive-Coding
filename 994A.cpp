@@ -10,24 +10,28 @@ using namespace std;
 #define INF 1e18
 #define pii pair<int,int>
 
+
+int x[20],y[20],z[20];
+
 int main()
 {
     //freopen ("input1.in","r",stdin);
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n,m,i,j;
+    cin>>n>>m;
+    for(i=0;i<n;i++)
+    	cin>>x[i];
+    int p=0;
+    for(j=0;j<m;j++)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	cin>>y[i];
+    	z[y[i]]++;
     }
+    for(i=0;i<n;i++)
+    	if(z[x[i]])
+    		cout<<x[i]<<" ";
 
 
     return 0;

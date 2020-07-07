@@ -17,17 +17,23 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n;
+    string s;
+    cin>>n>>s;
+    int i;
+    int p=0;
+    for(i=0;i<n;i++)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	if(s[i]=='8')
+    		p++;
     }
+    int m=(n-p)/10;
+    if(p>m)
+    {
+    	cout<<n/11;
+    }
+    else
+    	cout<<min(p,m);
 
 
     return 0;

@@ -17,17 +17,26 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n,m;
+    cin>>n>>m;
+    int x=n/9;
+    x+=(bool)(n%9);
+    string a,b;
+    int i;
+    for(i=0;i<x;i++)
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	a.pb('9');
+    	b.pb('0');
     }
+    string c="9";
+    c=c+b;
+    c=c+a;
+    string d=a+b;
+    d[d.size()-1]='1';
+    cout<<c<<" "<<d;
+
+
+
 
 
     return 0;

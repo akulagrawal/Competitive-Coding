@@ -17,17 +17,24 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    int t;
-    ll c,d,l;
-    cin>>t;
-    while(t--)
+    int n;
+    cin>>n;
+    int ax,ay,bx,by,cx,cy;
+    cin>>ax>>ay>>bx>>by>>cx>>cy;
+
+    if(bx==ax||by==ay||(bx-ax)==(by-ay))
     {
-    	cin>>c>>d>>l;
-    	if((l%4)||(l<((d+max((ll)0,c-2*d))*4))||(l>((c+d)*4)))
-    		cout<<"no\n";
-    	else
-    		cout<<"yes\n";
+    	cout<<"NO";
+    	return 0;
     }
+
+    if(((bx-ax)*(cx-ax)<=0)||((by-ay)*(cy-ay)<=0))
+    {
+    	cout<<"NO";
+    	return 0;
+    }
+
+    cout<<"YES";
 
 
     return 0;

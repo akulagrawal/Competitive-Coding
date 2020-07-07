@@ -4,59 +4,17 @@ using namespace std;
 #define s second
 #define ll long long
 #define mp make_pair
-#define MAX 100005
+#define MAX 1000006
 #define mod 1000000007
 #define pb push_back
-#define INF 1000005
+#define INF 1e18
 #define pii pair<int,int>
 
-
-int id[MAX], nodes, edges;
-pair <long long, pair<int, int> > p[MAX];
-
-void initialize()
-{
-    for(int i = 0;i < MAX;++i)
-        id[i] = i;
-}
-
-int root(int x)
-{
-    while(id[x] != x)
-    {
-        id[x] = id[id[x]];
-        x = id[x];
-    }
-    return x;
-}
-
-void union1(int x, int y)
-{
-    int p = root(x);
-    int q = root(y);
-    id[p] = id[q];
-}
-
-long long kruskal(pair<long long, pair<int, int> > p[])
-{
-    int x, y;
-    long long cost, minimumCost = 0;
-    for(int i = 0;i < edges;++i)
-    {
-        // Selecting edges one by one in increasing order from the beginning
-        x = p[i].second.first;
-        y = p[i].second.second;
-        cost = p[i].first;
-        // Check if the selected edge is creating a cycle or not
-        if(root(x) != root(y))
-        {
-            minimumCost += cost;
-            union1(x, y);
-        }
-    }
-    return minimumCost;
-}
-
+struct mycomp {
+    bool operator()(pii const & a,
+                              pii const & b)
+    { return a.second>b.second; }
+};
 
 int main()
 {
@@ -64,22 +22,62 @@ int main()
     //freopen ("output22.txt","w",stdout);
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    int t,a,b,i,m,n,k;
-    ll c;
-    scanf("%d",&t);
+
+    int t,p,n,m,a,b,c;
+    cin>>t;
+    priority_queue<pii, vector<pii>, mycomp > pq;
+    map<int, int> my;
+    vector<pii> v[MAX];
+    int sum;
     while(t--)
     {
-        initialize();
-        scanf("%d%d%d",&k,&n,&m);
-        nodes=n;
-        edges=m;
-        for(i=0;i<m;i++)
-        {
-            scanf("%d%d%lld",&a,&b,&c);
-            p[i]=mp(c,mp(a,b));
-        }
-        sort(p,p+m);
-        printf("%lld\n",(ll)k*kruskal(p));
+    	cin>>p>>n>>m;
+    	int i;
+    	sum = 0;
+    	my.clear();
+    	for(i=0;i<m;i++)
+    	{
+    		cin>>a>>b>>c;
+    		v[a].pb(mp(b,c));
+    		v[b].pb(mp(a,c));
+    	}
+    	int minm = mod;
+    	int mina = 1, minb = v[1][0].f;
+    	for(i=1;i<n;i++)
+    	{
+    		for(int j=0;j<v[i].size();j++)
+    		{
+    			if(minm > v[i][j].s)
+    			{
+    				minm = v[i][j].s;
+    				mina = i;
+    				minb = v[i][j].f;
+    			}
+    		}
+    	}
+    	pq.push(mp( minb, minm));
+    	my[mina] = 1;
+
+    	while(!pq.empty())
+    	{
+    		pii temp = pq.top();
+    		pq.pop();
+    		//cout<<temp.f.f<<" "<<temp.f.s<<" "<<temp.s<<endl;
+    		
+    		if(!my[temp.f])
+    		{
+    			my[temp.f] = 1;
+    			//cout<<temp.f.f<<" "<<temp.f.s<<endl;
+    			sum+=temp.s;
+    			for(i=0;i<v[temp.f].size();i++)
+    				if(!my[v[temp.f][i].f])
+    					pq.push(v[temp.f][i]);
+    		}
+    	}
+    	cout<<p*sum<<endl;
     }
+    
+
+
     return 0;
 }
